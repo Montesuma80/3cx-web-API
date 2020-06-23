@@ -25,7 +25,7 @@
 - Copy the 3cxpscomcpp2.dll from your 3CX Install dir to this API Folder
 - Bash:  **dotnet build WebAPICore.csproj**
 
-####### Start the API
+###### Start the API
 Now you can start the API.
 **For Windows User, the API need Admin rights, so start cmd as Administrator.**
 
