@@ -18,13 +18,20 @@ public static class Logger
     {
         Console.WriteLine(str);
         LogString.Append(str).Append(Environment.NewLine);
-        addtext(str);
+        if (Program.Debugger == "debug")
+            {
+                addtext(str);
+            }
+        
     }
     public static void Write(string str)
     {
         Console.Write(str);
         LogString.Append(str);
-        addtext(str);
+        if (Program.Debugger == "debug")
+            {
+                addtext(str);
+            }
 
     }
 

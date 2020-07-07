@@ -20,7 +20,7 @@ namespace WebAPI
                 StringComparer.InvariantCultureIgnoreCase);
 
         public static bool Stop { get; private set; }
-        
+        public static String Debugger;
         static void ReadConfiguration(string filePath)
         {
             var content = File.ReadAllLines(filePath);
@@ -50,6 +50,7 @@ namespace WebAPI
         static void Bootstrap(string[] args)
         {
             String Port = "0";
+            Program.Debugger = "off";
             PhoneSystem.CfgServerHost = "127.0.0.1";
             PhoneSystem.CfgServerPort = int.Parse(iniContent["ConfService"]["ConfPort"]);
             PhoneSystem.CfgServerUser = iniContent["ConfService"]["confUser"];
@@ -74,13 +75,29 @@ namespace WebAPI
             if (args.Length ==  0)
                 {
                     Logger.WriteLine("No Port Submitted, use Generic Port: 8889");
+                    Logger.WriteLine("Debug Mode off");
                     Port = "8889";
-
                 }
             else   
                 {
                     Logger.WriteLine($"Port Submitted, use Generic Port: {args[0]}");
                     Port = args[0];
+                if (args.GetUpperBound(0) == 0)
+                    {
+                        Logger.WriteLine("Debug Mode off");
+                    }
+                else 
+                    {
+                        if (args[1] == "debug") 
+                            {
+                                Program.Debugger = args[1];
+                                Logger.WriteLine("Debug Mode ON");
+                            }
+                        else
+                            {
+                                Logger.WriteLine("Debug Mode off, wrong parameter");
+                            }
+                    }
                 }
             var prefixes = new List<string>() { $"http://*:{Port}/" };
             
