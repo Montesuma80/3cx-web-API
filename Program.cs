@@ -108,7 +108,7 @@ namespace WebAPI
             // Add the prefixes.
             foreach (string s in prefixes)
             {
-                Console.WriteLine(s);
+                Logger.WriteLine(s);
                 listener.Prefixes.Add(s);
             }
                 listener.Start();
@@ -366,7 +366,7 @@ namespace WebAPI
                                 break;
                         }
                                 // Obtain a response object.
-                                Console.WriteLine(respval);
+                                Logger.WriteLine(respval);
                                 HttpListenerResponse response = context.Response;
                                 // Construct a response.
                                 byte[] buffer = System.Text.Encoding.UTF8.GetBytes(respval);

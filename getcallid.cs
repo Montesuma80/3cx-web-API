@@ -30,14 +30,14 @@ namespace WebAPI
                         /*int position = mod2.IndexOf("_");
                         if (position < 0)
                             continue;
-                            Console.WriteLine("Key: {0}, Value: '{1}'", 
+                            Logger.WriteLine("Key: {0}, Value: '{1}'", 
                             mod2.Substring(0, position),
                             CallID = mod2.Substring(position + 1));
                             */
                         CallIDv16 = kv.Key.CallID;
                         CallID = mod2;
-                        Console.WriteLine("CallID: " + CallID);
-                        Console.WriteLine("CallID_v16: " + CallIDv16);
+                        Logger.WriteLine("CallID: " + CallID);
+                        Logger.WriteLine("CallID_v16: " + CallIDv16);
                     }
                 }
                 return CallID;

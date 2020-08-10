@@ -29,24 +29,24 @@ namespace WebAPI
                                 {
                                     var owner = kv.Key;
                                     Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.WriteLine($"Call {kv.Key.CallID}:");
+                                    Logger.WriteLine($"Call {kv.Key.CallID}:");
                                     Console.ResetColor();
                                     string result = connectionAsString(owner);
-                                    Console.WriteLine(result);
+                                    Logger.WriteLine(result);
                                     if (result.Contains("S=Connected"))
                                         {
                                             int cut = result.IndexOf(':');
                                             string mod = result.Substring(0, cut);
                                             mod2 = mod.Substring(3);
                                             Console.ForegroundColor = ConsoleColor.Red;
-                                            Console.WriteLine("Active Connection Number is:");
-                                            Console.WriteLine(mod2);
+                                            Logger.WriteLine("Active Connection Number is:");
+                                            Logger.WriteLine(mod2);
                                             Console.ResetColor();
                                         }
                                     else
                                         {
                                             Console.ForegroundColor = ConsoleColor.Red;
-                                            Console.WriteLine("Active Connection Number is unknown");
+                                            Logger.WriteLine("Active Connection Number is unknown");
                                             Console.ResetColor();
                                         }
                                 }
@@ -70,8 +70,8 @@ namespace WebAPI
                 }
             if (args2.Length != 0 && i != 0)
                 {
-                Console.WriteLine("Transfer from:" + i + " to" + args2);
-                Console.WriteLine("Answering on Phone:" + i);
+                Logger.WriteLine("Transfer from:" + i + " to" + args2);
+                Logger.WriteLine("Answering on Phone:" + i);
                 PhoneSystem.Root.GetByID<ActiveConnection>(i).ReplaceWith(args2);
                 return("true");
                 }

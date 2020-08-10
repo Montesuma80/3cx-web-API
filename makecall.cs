@@ -21,11 +21,11 @@ namespace WebAPI
         public static string dial(string args1,string args2,string args3)
         {       
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("From Extension: " + args1);
+            Logger.WriteLine("From Extension: " + args1);
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("To Destination " + args2);
+            Logger.WriteLine("To Destination " + args2);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Phone " + args3);
+            Logger.WriteLine("Phone " + args3);
             Console.ResetColor();
 
                                     string mod;
@@ -35,8 +35,8 @@ namespace WebAPI
                                         {
                                             foreach (var r in dn.GetRegistrarContactsEx())
                                             {
-                                                string result = $"{r.ID}-{r.Contact}-{r.UserAgent}";
-                                                Console.WriteLine("DNReg " + result);
+                                                string result = $"{r.ID}-{r.UserAgent}";
+                                                Logger.WriteLine("DNReg " + result);
                                                 if (result.Contains("3CXPhone for Windows") && args3 == "Soft")
                                                 {
                                                     int cut = result.IndexOf('-');
@@ -49,12 +49,12 @@ namespace WebAPI
                                                         if (listener2.Wait(5000))
                                                         {
                                                             Console.ForegroundColor = ConsoleColor.Green;
-                                                            Console.WriteLine("Call initiated");
+                                                            Logger.WriteLine("Call initiated");
                                                         }
                                                         else
                                                         {
                                                             Console.ForegroundColor = ConsoleColor.Red;
-                                                            Console.WriteLine("Call is not initiated in 5 seconds");
+                                                            Logger.WriteLine("Call is not initiated in 5 seconds");
                                                         }
                                                     }
                                                     finally
@@ -68,7 +68,7 @@ namespace WebAPI
                                                 }
                                                 else if (!result.Contains("3CX") && args3 == "Desktop")
                                                 {
-                                                    Console.WriteLine(args3);
+                                                    Logger.WriteLine(args3);
                                                     int cut = result.IndexOf('-');
                                                     mod = result.Substring(0, cut);
                                                     var registrarRecord = PhoneSystem.Root.GetByID<RegistrarRecord>(int.Parse(mod));
@@ -79,12 +79,12 @@ namespace WebAPI
                                                         if (listener2.Wait(5000))
                                                         {
                                                             Console.ForegroundColor = ConsoleColor.Green;
-                                                            Console.WriteLine("Call initiated");
+                                                            Logger.WriteLine("Call initiated");
                                                         }
                                                         else
                                                         {
                                                             Console.ForegroundColor = ConsoleColor.Red;
-                                                            Console.WriteLine("Call is not initiated in 5 seconds");
+                                                            Logger.WriteLine("Call is not initiated in 5 seconds");
                                                         }
                                                     }
                                                     finally
@@ -96,7 +96,7 @@ namespace WebAPI
                                                 }
                                                 else 
                                                     {
-                                                    Console.WriteLine("next");
+                                                    Logger.WriteLine("next");
                                                     }
                                             }
                                         }

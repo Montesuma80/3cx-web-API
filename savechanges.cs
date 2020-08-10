@@ -52,13 +52,13 @@ namespace WebAPI
             {
                 if (agent == null)
                 {
-                    Console.WriteLine($"{agentDN} is not a valid extension");
+                    Logger.WriteLine($"{agentDN} is not a valid extension");
                     return "false";
                 }
 
                 if (!AllAgentQueues(agent).Any())
                 {
-                    Console.WriteLine($"Extension {agent.Number} is not an agent of the queues");
+                    Logger.WriteLine($"Extension {agent.Number} is not an agent of the queues");
                     return "false";
                 }
 
@@ -90,10 +90,10 @@ namespace WebAPI
                         SetWorkingQueues(agent, new string[0], new string[0], QueueStatusType.LoggedOut);
                         break;
                     default:
-                        Console.WriteLine($"Unknown action '{action}'");
+                        Logger.WriteLine($"Unknown action '{action}'");
                         return "false";
                 }
-                Console.WriteLine("Agent {0} {1}:\nWorking set:{2}[forced set {3}]\nInactive Queues:{4}", agentDN, agent.QueueStatus, string.Join(",", GetWorkingSet(agent)), "'" + (agent.GetPropertyValue("LOGGED_IN_QUEUES") ?? "None") + "'", string.Join(",", AllAgentQueues(agent).Except(GetWorkingSet(agent))));
+                Logger.WriteLine($"Agent {agentDN} {agent.QueueStatus}:\nWorking set:{string.Join(",", GetWorkingSet(agent))}[forced set {"'" + (agent.GetPropertyValue("LOGGED_IN_QUEUES") ?? "None") + "'"}]\nInactive Queues:{string.Join(",", AllAgentQueues(agent).Except(GetWorkingSet(agent)))}");
                 return "true";
             }
         }

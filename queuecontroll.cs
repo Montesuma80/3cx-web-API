@@ -48,7 +48,7 @@ namespace WebAPI
         agentdn.Save();
         }
                    
-        Console.WriteLine($"Login at Station {args2}");
+        Logger.WriteLine($"Login at Station {args2}");
         var action = args1;
         var agentDN = args2;
         
@@ -56,13 +56,13 @@ namespace WebAPI
         {
             if (agent == null)
             {
-                Console.WriteLine($"{agentDN} is not a valid extension");
+                Logger.WriteLine($"{agentDN} is not a valid extension");
                 return "is not a valid extension";
             }
 
             if (!AllAgentQueues(agent).Any())
             {
-                Console.WriteLine($"Extension {agent.Number} is not an agent of the queues");
+                Logger.WriteLine($"Extension {agent.Number} is not an agent of the queues");
                 return "is not an agent of the queues";
             }
 
