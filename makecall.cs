@@ -29,8 +29,6 @@ namespace WebAPI
             Console.ResetColor();
 
                                     string mod;
-                                    using (var ev = new AutoResetEvent(false))
-                                    using (var listener2 = new PsTypeEventListener<ActiveConnection>())
                                         foreach (var dn in PhoneSystem.Root.GetDN().GetDisposer(x => x.Number.StartsWith(args1 == "all" ? "" : args1)))
                                         {
                                             foreach (var r in dn.GetRegistrarContactsEx())
@@ -42,25 +40,9 @@ namespace WebAPI
                                                     int cut = result.IndexOf('-');
                                                     mod = result.Substring(0, cut);
                                                     var registrarRecord = PhoneSystem.Root.GetByID<RegistrarRecord>(int.Parse(mod));
-                                                    listener2.SetTypeHandler(null, (x) => ev.Set(), null, (x) => x["devcontact"].Equals(registrarRecord.Contact), (x) => ev.WaitOne(x));
                                                     PhoneSystem.Root.MakeCall(registrarRecord, args2);
-                                                    try
-                                                    {
-                                                        if (listener2.Wait(5000))
-                                                        {
-                                                            Console.ForegroundColor = ConsoleColor.Green;
-                                                            Logger.WriteLine("Call initiated");
-                                                        }
-                                                        else
-                                                        {
-                                                            Console.ForegroundColor = ConsoleColor.Red;
-                                                            Logger.WriteLine("Call is not initiated in 5 seconds");
-                                                        }
-                                                    }
-                                                    finally
-                                                    {
-                                                        Console.ResetColor();
-                                                    }
+                                                    Thread.Sleep(2500);
+
                                                     // Construct a response.
                                                     //respone the CallID
                                                     string callid =  getcallid.showcallid(args1);
@@ -72,25 +54,9 @@ namespace WebAPI
                                                     int cut = result.IndexOf('-');
                                                     mod = result.Substring(0, cut);
                                                     var registrarRecord = PhoneSystem.Root.GetByID<RegistrarRecord>(int.Parse(mod));
-                                                    listener2.SetTypeHandler(null, (x) => ev.Set(), null, (x) => x["devcontact"].Equals(registrarRecord.Contact), (x) => ev.WaitOne(x));
+
                                                     PhoneSystem.Root.MakeCall(registrarRecord, args2);
-                                                    try
-                                                    {
-                                                        if (listener2.Wait(5000))
-                                                        {
-                                                            Console.ForegroundColor = ConsoleColor.Green;
-                                                            Logger.WriteLine("Call initiated");
-                                                        }
-                                                        else
-                                                        {
-                                                            Console.ForegroundColor = ConsoleColor.Red;
-                                                            Logger.WriteLine("Call is not initiated in 5 seconds");
-                                                        }
-                                                    }
-                                                    finally
-                                                    {
-                                                        Console.ResetColor();
-                                                    }
+                                                   Thread.Sleep(2500);
                                                     string callid =  getcallid.showcallid(args1);
                                                     return (callid);
                                                 }

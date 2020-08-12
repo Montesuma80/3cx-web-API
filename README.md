@@ -1,10 +1,9 @@
-# 3CX We API for 3CX V16
+# 3CX Web API for 3CX V16
 
 
 #### Requirements
 - Dot Net Core 3.1 (2.1 for V16.0 - 16.4)
 - 3CXPhoneSystem.ini
-- 3cxpscomcpp2.dll
 
 ------------
 
@@ -15,17 +14,17 @@
 
 - Download from Microsoft Dot Net Core v3.1
 - Install Dot Net Core
-- Copy the 3cxpscomcpp2.dll from your 3CX Install dir to this API Folder
 - run in cmd dotnet build WebAPICore.csproj
 
 ###### Linux
 
--  Bash: **apt-get install -y dotnet-runtime-3.1**
-- Copy the 3cxpscomcpp2.dll from your 3CX Install dir to this API Folder
+- Bash: **apt-get install -y dotnet-runtime-3.1**
 - Bash:  **dotnet build WebAPICore.csproj**
 
 ###### Start the API
 Now you can start the API.
+it is in this path: bin\Debug\netcoreapp3.1
+
 **For Windows User, the API need Admin rights, so start cmd as Administrator.**
 
 dotnet WebAPICore.dll 
