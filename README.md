@@ -36,3 +36,25 @@ Sample: dotnet WebAPICore.dll 8888
 Sample debug mode: dotnet WebAPICore.dll 8888 debug
 
 ##### Features
+URL: http://ip:port/action/arg1/arg2/.....
+
+Action:
+makecall
+ready
+notready
+logout
+login
+dnregs
+ondn
+getcallerid
+drop
+answer
+record
+transfer
+park
+unpark
+atttrans (broken in new Alpha and Beta Version of 3CX)
+setstatus
+showstatus
+stop
+
