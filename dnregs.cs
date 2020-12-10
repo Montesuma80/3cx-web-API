@@ -15,17 +15,16 @@ namespace WebAPI
     {
         public static string status(string args1)
         {       
-            foreach (var dn in PhoneSystem.Root.GetDN().GetDisposer(x => x.Number.StartsWith(args1 == "all" ? "" : args1)))
-            {
-                foreach (var r in dn.GetRegistrarContactsEx())
+            var dn = PhoneSystem.Root.GetDNByNumber(args1);
+            RegistrarRecord[] rr = dn.GetRegistrarContactsEx();
+            
+                foreach (var r in rr)
                 {
                     string result = $"{r.ID}-{r.Contact}-{r.UserAgent}";
                     Logger.WriteLine(result);
                     return result;
                 }
                 return "error";
-            }
-            return "error";
         }
     }
 }

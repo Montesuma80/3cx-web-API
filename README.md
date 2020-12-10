@@ -1,6 +1,8 @@
 # 3CX Web API for 3CX V16
 
 
+## Attended Transfer bug is fixed with 3CX V16.0.1078
+
 #### Requirements
 - Dot Net Core 3.1 (2.1 for V16.0 - 16.4)
 - 3CXPhoneSystem.ini
