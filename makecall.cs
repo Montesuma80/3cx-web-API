@@ -50,6 +50,18 @@ namespace WebAPI
                                                     string callid =  getcallid.showcallid(args1);
                                                     return (callid);
                                                 }
+                                                else if (result.Contains("3CX") && args3 == "Web")
+                                                {
+                                                    Console.WriteLine(args3);
+                                                    int cut = result.IndexOf('-');
+                                                    mod = result.Substring(0, cut);
+                                                    var registrarRecord = PhoneSystem.Root.GetByID<RegistrarRecord>(int.Parse(mod));
+                                                    //listener2.SetTypeHandler(null, (x) => ev.Set(), null, (x) => x["devcontact"].Equals(registrarRecord.Contact), (x) => ev.WaitOne(x));
+                                                    PhoneSystem.Root.MakeCall(registrarRecord, args2);
+                                                    Thread.Sleep(2500);
+                                                    string callid =  getcallid.showcallid(args1);
+                                                    return (callid);
+                                                }
                                                 else if (!result.Contains("3CX") && args3 == "Desktop")
                                                 {
                                                     Console.WriteLine(args3);

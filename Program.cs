@@ -325,7 +325,7 @@ namespace WebAPI
                                 {
                                     string arg2 = "*10";
                                     string arg3 = "Soft";
-                                    respval = makedirectcall.dial(queryStringArray[2],arg2 ,arg3);
+                                    respval = makedirectcall.dial(queryStringArray[2],arg2 ,queryStringArray[3]);
                                     
                                 }
                                 break;

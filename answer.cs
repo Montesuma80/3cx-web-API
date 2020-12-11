@@ -37,7 +37,9 @@ namespace WebAPI
                                     }
                             }
                         string result = connectionAsString(owner);
+                        Console.WriteLine(result);
                         string CCIDdata = kv.Key.AttachedData.GetValueOrDefault("devcontact");
+                        Console.WriteLine(CCIDdata);
                         if (result.Contains("S=Ringing") && CCIDdata == agent)
                         {
                             int cut = result.IndexOf(':');
@@ -64,7 +66,28 @@ namespace WebAPI
                         }
                         else if (result.Contains("S=Ringing") && CCIDdata.Contains("127.0.0.1"))
                         {
-                            Logger.WriteLine("Active Connection Type is Mobilephone");
+                            int cut = result.IndexOf(':');
+                            string mod = result.Substring(0, cut);
+                            mod2 = mod.Substring(3);
+                            int i = 0;
+                            try
+                                {
+                                    i = System.Convert.ToInt32(mod2);
+                                }
+                            catch (FormatException)
+                                {
+                                // the FormatException is thrown when the string text does 
+                                // not represent a valid integer.
+                                }
+                            catch (OverflowException)
+                                {
+                                // the OverflowException is thrown when the string is a valid integer, 
+                                // but is too large for a 32 bit integer.  Use Convert.ToInt64 in
+                                // this case.
+                                }
+                                PhoneSystem.Root.GetByID<ActiveConnection>(i).Answer();
+                                Logger.WriteLine("Active Connection Type is Mobilephone or WebRTC");
+                                return ("true");
 
                         }
                         else
