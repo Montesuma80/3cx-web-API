@@ -324,7 +324,7 @@ namespace WebAPI
                             case "unpark":
                                 {
                                     string arg2 = "*10";
-                                    string arg3 = "Soft";
+                                    //string arg3 = "Soft";
                                     respval = makedirectcall.dial(queryStringArray[2],arg2 ,queryStringArray[3]);
                                     
                                 }
@@ -353,6 +353,12 @@ namespace WebAPI
                                 {
 
 
+                                }
+                                break;
+                            case "clear":
+                                {
+                                    Console.WriteLine("Clearing the screen!");
+                                    Console.Clear();
                                 }
                                 break;
                             case "stop":
