@@ -17,6 +17,19 @@
 - Install Dot Net Core
 - run in cmd dotnet build WebAPICore.csproj
 
+##### Linux (Debian 10)
+
+- Bash: wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+- Bash: sudo dpkg -i packages-microsoft-prod.deb
+- Bash: **apt-get update**
+- Bash: **apt-get install -y dotnet-sdk-3.1**
+Bevore compile, you need to edit the **WebAPICore.csproj**
+- remove *<Private>false</Private>* in <ItemGroup> for 3cxpscomcpp2
+- edit path: <HintPath>..\..\..\Program Files\3CX Phone System\Bin\3cxpscomcpp2.dll</HintPath> to <HintPath>/usr/lib/3cxpbx/3cxpscomcpp2.dll</HintPath> 
+- Bash:  **dotnet build WebAPICore.csproj**
+
+
+
 ##### Linux
 
 - Bash: **apt-get install -y dotnet-runtime-3.1**
@@ -25,6 +38,7 @@
 #### Start the API
 Now you can start the API.
 it is in this path: bin\Debug\netcoreapp3.1
+You need the 3CXPhoneSystem.ini in your API folder
 
 **For Windows User, the API need Admin rights, so start cmd as Administrator.**
 
