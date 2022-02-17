@@ -1,7 +1,6 @@
 # 3CX Web API / 3CX Phone System Web API 
 
 ------------
-#### Who is using my API
 
 I´m intrested to know who is using my API.
 Sometimes i get a bug Mail, but no respone who is using it.
@@ -10,17 +9,13 @@ Sometimes i get a bug Mail, but no respone who is using it.
 
 ------------
 
-
-
-#### Supportet by V16 and v18 Alpha
+#### Supportet by v18 Alpha4
 
 ------------
 
 
->  **Attended Transfer bug is fixed with 3CX V16.0.1078**
-
 #### Requirements
-- Dot Net Core 3.1 (2.1 for V16.0 - 16.4 use old release of this API)
+- Dot Net 5.0
 - 3CXPhoneSystem.ini (Debian User must fix the Path in the ini for the 3cxpscomcpp2.dll)
 
 ------------
@@ -30,7 +25,7 @@ Sometimes i get a bug Mail, but no respone who is using it.
 
 ##### Windows
 
-- Download from Microsoft Dot Net Core v3.1
+- Download from Microsoft Dot Net 5.0
 - Install Dot Net Core
 - run in cmd dotnet build WebAPICore.csproj
 
@@ -39,9 +34,7 @@ Sometimes i get a bug Mail, but no respone who is using it.
 ```bash
 wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
-apt-get update
-apt-get install -y dotnet-sdk-3.1
-
+sudo apt-get update; \ sudo apt-get install -y apt-transport-https && \ sudo apt-get update && \ sudo apt-get install -y dotnet-sdk-5.0
 ```
 
 **Bevore compile, you need to edit the **  *WebAPICore.csproj*
@@ -54,17 +47,9 @@ dotnet build WebAPICore.csproj
 ```
 
 
-
-##### Linux
-
-```bash
-apt-get install -y dotnet-runtime-3.1
-dotnet build WebAPICore.csproj
-```
-
 #### Start the API
 Now you can start the API.
-it is in this path: bin\Debug\netcoreapp3.1
+it is in this path: bin\Debug\net5.0
 You need the 3CXPhoneSystem.ini in your API folder
 
 **For Windows User, the API need Admin rights, so start cmd as Administrator.**

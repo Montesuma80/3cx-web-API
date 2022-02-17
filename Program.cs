@@ -374,6 +374,8 @@ namespace WebAPI
                                 // Obtain a response object.
                                 Logger.WriteLine(respval);
                                 HttpListenerResponse response = context.Response;
+                                // Allow cross origin requests
+                                response.AddHeader("Access-Control-Allow-Origin", "null");
                                 // Construct a response.
                                 byte[] buffer = System.Text.Encoding.UTF8.GetBytes(respval);
                                 // Get a response stream and write the response to it.
