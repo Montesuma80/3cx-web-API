@@ -1,7 +1,6 @@
 # 3CX Web API / 3CX Phone System Web API 
 
 ------------
-#### Who is using my API
 
 I´m intrested to know who is using my API.
 Sometimes i get a bug Mail, but no respone who is using it.
