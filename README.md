@@ -46,6 +46,9 @@ cd ./bin/Debug/net6.0
 cp -pr /var/lib/3cxpbx/Bin/3CXPhoneSystem.ini .
 ```
 
+**Edit **  *3CXPhoneSystem.ini*
+- add *`instanceBinPath = /usr/lib/3cxpbx`* before *`[ConfService]`* in the copy of *3CXPhoneSystem.ini*
+
 ```bash
 dotnet build WebAPICore.csproj
 ```
