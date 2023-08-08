@@ -9,14 +9,14 @@ Sometimes i get a bug Mail, but no respone who is using it.
 
 ------------
 
-#### Supportet by v18 Alpha4
+#### Supportet by 18.0 (Build 912)
 
 ------------
 
 
 #### Requirements
-- Dot Net 5.0
-- 3CXPhoneSystem.ini (Debian User must fix the Path in the ini for the 3cxpscomcpp2.dll)
+- Dot Net 6.0
+- 3CXPhoneSystem.ini (Debian User must fix the Path in the ini for the 3cxpscomcpp2.dll ->  instanceBinPath = /usr/lib/3cxpbx)
 
 ------------
 
@@ -34,13 +34,17 @@ Sometimes i get a bug Mail, but no respone who is using it.
 ```bash
 wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
-sudo apt-get update; \ sudo apt-get install -y apt-transport-https && \ sudo apt-get update && \ sudo apt-get install -y dotnet-sdk-5.0
+sudo apt-get update; sudo apt-get install -y apt-transport-https && sudo apt-get update && sudo apt-get install -y dotnet-sdk-6.0
 ```
 
 **Bevore compile, you need to edit the **  *WebAPICore.csproj*
 - remove *`<Private>false</Private>`* in <ItemGroup> for 3cxpscomcpp2
 - edit path: `<HintPath>..\..\..\Program Files\3CX Phone System\Bin\3cxpscomcpp2.dll</HintPath>` to `<HintPath>/usr/lib/3cxpbx/3cxpscomcpp2.dll</HintPath>` 
 
+```bash
+cd ./bin/Debug/net6.0
+cp -pr /var/lib/3cxpbx/Bin/3CXPhoneSystem.ini .
+```
 
 ```bash
 dotnet build WebAPICore.csproj
@@ -49,7 +53,7 @@ dotnet build WebAPICore.csproj
 
 #### Start the API
 Now you can start the API.
-it is in this path: bin\Debug\net5.0
+it is in this path: bin\Debug\net6.0
 You need the 3CXPhoneSystem.ini in your API folder
 
 **For Windows User, the API need Admin rights, so start cmd as Administrator.**
