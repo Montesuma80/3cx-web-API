@@ -50,6 +50,8 @@ namespace WebAPI
         static void Bootstrap(string[] args)
         {
             String Port = "0";
+            String user = "admin";
+            String pass = "password";
             Program.Debugger = "off";
             PhoneSystem.CfgServerHost = "127.0.0.1";
             PhoneSystem.CfgServerPort = int.Parse(iniContent["ConfService"]["ConfPort"]);
@@ -74,14 +76,18 @@ namespace WebAPI
             // URI prefixes are required,
             if (args.Length ==  0)
                 {
-                    Logger.WriteLine("No Port Submitted, use Generic Port: 8889");
+                    Logger.WriteLine("No args submitted, use Generic Port: 8889 and default user password: admin/password");
                     Logger.WriteLine("Debug Mode off");
                     Port = "8889";
+                    user = "admin";
+                    pass = "password";
                 }
             else   
                 {
-                    Logger.WriteLine($"Port Submitted, use Generic Port: {args[0]}");
+                    Logger.WriteLine($"Port Submitted, use Generic Port: {args[0]} and submitted credentials");
                     Port = args[0];
+                    user = args[1];
+                    pass = args[2];
                 if (args.GetUpperBound(0) == 0)
                     {
                         Logger.WriteLine("Debug Mode off");
@@ -111,6 +117,7 @@ namespace WebAPI
                 Logger.WriteLine(s);
                 listener.Prefixes.Add(s);
             }
+                listener.AuthenticationSchemes = AuthenticationSchemes.Basic;
                 listener.Start();
                 
                 Logger.WriteLine("Listening... on Port " + Port + " for Development");
@@ -120,6 +127,12 @@ namespace WebAPI
                     HttpListenerContext context = listener.GetContext();
                     HttpListenerRequest request = context.Request;
                     Logger.WriteLine(request.RawUrl);
+                    if (!Authenticate(context, user, pass))
+                    {
+                        context.Response.StatusCode = 401;
+                        context.Response.Close();
+                        continue;
+                    }
 
                     string documentContents;
                     using (Stream receiveStream = request.InputStream)
@@ -442,6 +455,28 @@ namespace WebAPI
             {
                 return null;
             }
+        }
+
+        static bool Authenticate(HttpListenerContext context, String user, String pass)
+        {
+            string header = context.Request.Headers["Authorization"];
+            if (string.IsNullOrEmpty(header) || !header.StartsWith("Basic "))
+            {
+                return false;
+            }
+
+            var encodedUserPass = header.Substring(6).Trim();
+            var userPassArray = Encoding.Default.GetString(Convert.FromBase64String(encodedUserPass)).Split(':');
+            if (userPassArray.Length < 2)
+            {
+                return false;
+            }
+
+            var username = userPassArray[0];
+            var password = userPassArray[1];
+
+            // Check if provided credentials match with configured ones.
+            return username == user && password == pass;
         }
     }
 
