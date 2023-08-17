@@ -58,9 +58,9 @@ dotnet WebAPICore.dll
 or 
 dotnet WebAPICore.dll Port
 
-Sample: dotnet WebAPICore.dll 8888
+Sample: dotnet WebAPICore.dll 8888 username password
 
-Sample debug mode: dotnet WebAPICore.dll 8888 debug
+Sample debug mode: dotnet WebAPICore.dll 8888 username password debug
 
 ##### Features
 URL: http://ip:port/action/arg1/arg2/.....
