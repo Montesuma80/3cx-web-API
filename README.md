@@ -8,7 +8,7 @@ Sometimes i get a bug Mail, but no respone who is using it.
 @All please send me an mail to **hoening`at`googlemail.com
 
 ------------
-
+#### Supportet by v20 Beta2
 #### Supportet by v18 Alpha4
 
 ------------
