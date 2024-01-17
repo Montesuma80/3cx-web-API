@@ -15,7 +15,7 @@ Sometimes i get a bug Mail, but no respone who is using it.
 
 
 #### Requirements
-- Dot Net 5.0
+- Dot Net 6.0
 - 3CXPhoneSystem.ini (Debian User must fix the Path in the ini for the 3cxpscomcpp2.dll)
 
 ------------
@@ -25,7 +25,7 @@ Sometimes i get a bug Mail, but no respone who is using it.
 
 ##### Windows
 
-- Download from Microsoft Dot Net 5.0
+- Download from Microsoft Dot Net 6.0
 - Install Dot Net Core
 - run in cmd dotnet build WebAPICore.csproj
 
@@ -34,7 +34,7 @@ Sometimes i get a bug Mail, but no respone who is using it.
 ```bash
 wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
-sudo apt-get update; \ sudo apt-get install -y apt-transport-https && \ sudo apt-get update && \ sudo apt-get install -y dotnet-sdk-5.0
+sudo apt-get update; \ sudo apt-get install -y apt-transport-https && \ sudo apt-get update && \ sudo apt-get install -y dotnet-sdk-6.0
 ```
 
 **Bevore compile, you need to edit the **  *WebAPICore.csproj*
@@ -58,9 +58,9 @@ dotnet WebAPICore.dll
 or 
 dotnet WebAPICore.dll Port
 
-Sample: dotnet WebAPICore.dll 8888
+Sample: dotnet WebAPICore.dll 8888 username password
 
-Sample debug mode: dotnet WebAPICore.dll 8888 debug
+Sample debug mode: dotnet WebAPICore.dll 8888 username password debug
 
 ##### Features
 URL: http://ip:port/action/arg1/arg2/.....
