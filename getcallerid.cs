@@ -38,14 +38,14 @@ namespace WebAPI
                             }
                         else
                             {
-                               Queuename = "Direkter Anruf"; 
+                               Queuename = "Direct call"; 
                             }
                         mod2 = owner.AttachedData.GetValueOrDefault("extnumber");
                         Console.ForegroundColor = ConsoleColor.Green;
                         Logger.WriteLine("Called Number: " + mod2);
                         Logger.WriteLine("Called Queue: " + Queue_number);
                         Console.ResetColor();
-                        mod2= "Queue: " + Queuename + " Anrufer: " + mod2;
+                        mod2= "Queue: " + Queuename + " Caller: " + mod2;
                     }
                 }
 
