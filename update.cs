@@ -32,7 +32,6 @@ namespace WebAPI
             catch (Exception ex)
             {
                 Console.WriteLine($"Update failed\n{ex}");
-                return null;
             }
         }
     }
