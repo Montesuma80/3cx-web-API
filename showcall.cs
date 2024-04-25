@@ -32,7 +32,7 @@ namespace WebAPI
                 else
                     {
                     Queue_number = "null";
-                    Queuename = "Direkter Anruf"; 
+                    Queuename = "Direct call"; 
                     }
                 return $"ID={ac.ID};S={ac.Status};DN={ac.DN.Number};Queue_Name={Queuename};Queue_Nummer={Queue_number};EP={ac.ExternalParty};REC={ac.RecordingState}";
             }

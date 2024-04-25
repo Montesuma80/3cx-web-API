@@ -34,7 +34,7 @@ namespace WebAPI
                     PhoneSystem.Root.TransferCall(mod2, owner, ParkPos);
                     return "true";
                 }
-            Logger.WriteLine("keine offene Connection gefunden");
+            Logger.WriteLine("No open connection found");
             return "false";
             }
         }
